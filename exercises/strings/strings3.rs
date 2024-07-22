@@ -3,21 +3,19 @@
 // Execute `rustlings hint strings3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn trim_me(input: &str) -> String {
-    // TODO: Remove whitespace from both ends of a string!
-    ???
+    // input.chars().filter(|c| !c.is_whitespace()).collect()
+    input.split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
 fn compose_me(input: &str) -> String {
-    // TODO: Add " world!" to the string! There's multiple ways to do this!
-    ???
+    // TODO: what does to owned mean? String + &str works?
+    input.to_owned() + " world!"
 }
 
 fn replace_me(input: &str) -> String {
-    // TODO: Replace "cars" in the string with "balloons"!
-    ???
+    // TODO: how does collect infer what types to collect to?
+    input.split_whitespace().map(|w| if w == "cars" { "balloons"} else { w }).collect::<Vec<_>>().join(" ")
 }
 
 #[cfg(test)]

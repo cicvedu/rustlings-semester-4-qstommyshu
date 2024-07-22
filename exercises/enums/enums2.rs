@@ -3,11 +3,15 @@
 // Execute `rustlings hint enums2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 #[derive(Debug)]
 enum Message {
-    // TODO: define the different variants used below
+    Quit,
+    // An enum variant is a struct, which specifies the type
+    Move {x: i32, y: i32},
+    // specify the type of enum variant
+    Echo (String),
+    // unit like struct, specifies the type
+    ChangeColor(i32, i32, i32),
 }
 
 impl Message {
