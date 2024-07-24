@@ -44,7 +44,7 @@ impl State {
         // Remember: When passing a tuple as a function argument, you'll need
         // extra parentheses: fn function((t, u, p, l, e))
         match message {
-            // TODO: use self.function to call functions, even though function name and field name are the same
+            // use self.function to call functions, even though function name and field name are the same
             Message::Quit => self.quit(),
             // pattern match point in Message::Move to p
             Message::Move(p) => self.move_position(p),

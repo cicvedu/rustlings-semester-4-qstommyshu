@@ -29,18 +29,16 @@ pub enum Command {
 mod my_module {
     use super::Command;
 
-    // TODO: Don't understand why
-    // TODO: Why this function returns a Vec<String>?
     pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
         let mut output: Vec<_> = vec![];
-        // TODO: what is the differences between .iter() and .into_iter()?
-        // What is the differences between &String and &str?
+        // Uses .iter() because we don't need to modify the original input, we can just take references
+        // and use the elements inside.
         for (string, command) in input.iter() {
             // Complete the function body. You can do it!
             match command {
+                // &String can automatically dereference and call methods associate with String
                 Command::Uppercase => output.push(string.to_uppercase()),
                 Command::Trim => output.push(string.split_whitespace().collect::<Vec<_>>().join(" ")),
-                // TODO: why we need to use string.to_owned() + &"bar".repeat()??
                 Command::Append(times) => output.push(string.to_owned() + &"bar".repeat(*times)),
             };
         }
@@ -50,7 +48,7 @@ mod my_module {
 
 #[cfg(test)]
 mod tests {
-    // TODO: What do we need to import to have `transformer` in scope?
+    // What do we need to import to have `transformer` in scope?
     use crate::my_module::transformer;
     use super::Command;
 
@@ -62,6 +60,7 @@ mod tests {
             ("foo".into(), Command::Append(1)),
             ("bar".into(), Command::Append(5)),
         ]);
+        assert_eq!(&"HELLO".to_string(), "HELLO");
         assert_eq!(output[0], "HELLO");
         assert_eq!(output[1], "all roads lead to rome!");
         assert_eq!(output[2], "foobar");

@@ -9,8 +9,8 @@ fn trim_me(input: &str) -> String {
 }
 
 fn compose_me(input: &str) -> String {
-    // TODO: what does to owned mean? String + &str works?
-    input.to_owned() + " world!"
+    // input.to_owned() + " world!"
+    format!("{}{}", input, " world!")
 }
 
 fn replace_me(input: &str) -> String {

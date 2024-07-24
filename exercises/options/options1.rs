@@ -35,7 +35,7 @@ mod tests {
 
     #[test]
     fn raw_value() {
-        // TODO: Fix this test. How do you get at the value contained in the
+        // Fix this test. How do you get at the value contained in the
         // Option?
         let icecreams = maybe_icecream(12).unwrap();
         assert_eq!(icecreams, 5);
