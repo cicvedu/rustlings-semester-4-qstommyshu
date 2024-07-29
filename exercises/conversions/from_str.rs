@@ -31,8 +31,6 @@ enum ParsePersonError {
     ParseInt(ParseIntError),
 }
 
-// I AM NOT DONE
-
 // Steps:
 // 1. If the length of the provided string is 0, an error should be returned
 // 2. Split the given string on the commas present in it
@@ -52,6 +50,33 @@ enum ParsePersonError {
 impl FromStr for Person {
     type Err = ParsePersonError;
     fn from_str(s: &str) -> Result<Person, Self::Err> {
+        if s.is_empty() { return Err(ParsePersonError::Empty);}
+        // TODO: what does .ok_or_else return?
+        // Why don't need Err() here to enclose the error message?
+        let (name, age) = s.split_once(',').ok_or_else(||ParsePersonError::BadLen)?;
+        if name.is_empty() {return Err(ParsePersonError::NoName)};
+        if age.contains(',') {return Err(ParsePersonError::BadLen)};
+        Ok(age.parse()
+            .map(|age| Person {
+                name: name.to_string(),
+                age: age,
+            })
+            // TODO: why need Err here?
+            .or_else(|e| Err(ParsePersonError::ParseInt(e)))?)
+
+        // TODO: don't understand
+        // s.split_once(',')
+        //     .map(|(name, age)| {
+        //         if name.is_empty() {return Err(ParsePersonError::NoName)}
+        //         if age.is_empty() {return Err(ParsePersonError::BadLen)}
+        //         Ok(age.parse()
+        //             .map(|age| Person {
+        //                 name: name.to_string(),
+        //                 age: age,
+        //             })
+        //             .or_else(|e| Err(ParsePersonError::ParseInt(e)))?)
+        //     })
+        //     .ok_or_else(|| Err(ParsePersonError::BadLen))?
     }
 }
 

@@ -22,7 +22,14 @@
 // Execute `rustlings hint tests5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// TODO: safety notice should be added
+
+/// # Safety
+/// This function is unsafe because it performs raw pointer dereferencing
+/// and writes to a memory location. The caller must ensure that:
+/// - The provided `address` is valid.
+/// - The memory at `address` can safely be written to.
+/// - There are no data races when accessing the memory location.
 
 /// # Safety
 ///
@@ -31,8 +38,13 @@ unsafe fn modify_by_address(address: usize) {
     // TODO: Fill your safety notice of the code block below to match your
     // code's behavior and the contract of this function. You may use the
     // comment of the test below as your format reference.
+
+    // TODO: creating raw pointer is safe
+    let ptr = address as *mut u32; // Cast the address to a mutable pointer to u32
+
     unsafe {
-        todo!("Your code goes here")
+        // TODO: what does this mean? what is a *mut u32?
+        *ptr = 0xAABBCCDD                       // Dereference the pointer and modify the memory
     }
 }
 
